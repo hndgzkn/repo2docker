@@ -40,7 +40,8 @@ class PipfileBuildPack(CondaBuildPack):
         if os.path.exists(lockfile):
             with open(lockfile) as f:
                 lock_info = json.load(f)
-                requires_sources.append(lock_info.get("_meta", {}).get("requires", {}))
+                requires_sources.append(lock_info.get(
+                    "_meta", {}).get("requires", {}))
 
         pipfile = self.binder_path("Pipfile")
         if os.path.exists(pipfile):
@@ -88,7 +89,7 @@ class PipfileBuildPack(CondaBuildPack):
         scripts = super().get_preassemble_scripts()
         # install pipenv to install dependencies within Pipfile.lock or Pipfile
         scripts.append(
-            ("${NB_USER}", "${KERNEL_PYTHON_PREFIX}/bin/pip install pipenv==2018.11.26")
+            ("${NB_USER}", "${KERNEL_PYTHON_PREFIX}/bin/python -m pip install pipenv==2018.11.26")
         )
         return scripts
 

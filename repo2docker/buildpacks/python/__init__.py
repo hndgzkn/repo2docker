@@ -43,7 +43,7 @@ class PythonBuildPack(CondaBuildPack):
         """
         # KERNEL_PYTHON_PREFIX is the env with the kernel,
         # whether it's distinct from the notebook or the same.
-        pip = "${KERNEL_PYTHON_PREFIX}/bin/pip"
+        pip = "${KERNEL_PYTHON_PREFIX}/bin/python -m pip"
         scripts = []
         if self.py2:
             # using python 2 kernel,
@@ -67,7 +67,8 @@ class PythonBuildPack(CondaBuildPack):
             scripts.append(
                 (
                     "${NB_USER}",
-                    '{} install --no-cache-dir -r "{}"'.format(pip, requirements_file),
+                    '{} install --no-cache-dir -r "{}"'.format(
+                        pip, requirements_file),
                 )
             )
         return scripts
@@ -120,7 +121,7 @@ class PythonBuildPack(CondaBuildPack):
         setup_py = "setup.py"
         # KERNEL_PYTHON_PREFIX is the env with the kernel,
         # whether it's distinct from the notebook or the same.
-        pip = "${KERNEL_PYTHON_PREFIX}/bin/pip"
+        pip = "${KERNEL_PYTHON_PREFIX}/bin/python -m pip"
         if not self._should_preassemble_pip:
             assemble_scripts.extend(self._get_pip_scripts())
 
