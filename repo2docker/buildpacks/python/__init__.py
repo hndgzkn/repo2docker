@@ -35,6 +35,9 @@ class PythonBuildPack(CondaBuildPack):
         self._python_version = py_version
         return self._python_version
 
+    def get_packages(self):
+        return set(['libpython3-dev'])
+
     def _get_pip_scripts(self):
         """Get pip install scripts
 
