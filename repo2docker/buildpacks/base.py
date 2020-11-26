@@ -252,6 +252,7 @@ class BuildPack:
             "less",
             "nodejs",
             "unzip",
+            "libpython3-dev",
         }
 
     def get_build_env(self):

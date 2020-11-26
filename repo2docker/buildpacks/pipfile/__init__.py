@@ -84,6 +84,9 @@ class PipfileBuildPack(CondaBuildPack):
                 files[path] = path
         return files
 
+    def get_packages(self):
+        return set(['libpython3-dev'])
+
     def get_preassemble_scripts(self):
         """scripts to run prior to staging the repo contents"""
         scripts = super().get_preassemble_scripts()
